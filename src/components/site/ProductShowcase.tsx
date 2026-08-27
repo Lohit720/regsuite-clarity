@@ -50,9 +50,9 @@ export function ProductShowcase({ products }: { products: ShowcaseProduct[] }) {
     window.setTimeout(() => (lockRef.current = false), 900);
   };
 
-  const current = products[active];
-  const prev = products[(active - 1 + products.length) % products.length];
-  const next = products[(active + 1) % products.length];
+  const current = products[active]!;
+  const prev = products[(active - 1 + products.length) % products.length]!;
+  const next = products[(active + 1) % products.length]!;
 
   return (
     <section

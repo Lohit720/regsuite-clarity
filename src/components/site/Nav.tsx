@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
+import logo720 from "@/assets/logo-720.png.asset.json";
 
 const links = [
   "What We Do",
