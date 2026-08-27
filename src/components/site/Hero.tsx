@@ -104,7 +104,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 90 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4, delay: 0.7, ease: easeOut }}
-          className="pointer-events-none absolute right-[-14%] bottom-[-16%] hidden w-[62%] origin-bottom lg:block"
+          className="pointer-events-none absolute right-[-12%] bottom-[-22%] hidden w-[58%] origin-bottom lg:block"
         >
           <div className="glow-teal absolute -inset-16 opacity-30 blur-3xl" />
           <img
