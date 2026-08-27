@@ -11,8 +11,9 @@ export function DataNetwork() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const context = canvas.getContext("2d");
+    if (!context) return;
+    const ctx: CanvasRenderingContext2D = context;
 
     let raf = 0;
     let width = 0;
@@ -39,6 +40,7 @@ export function DataNetwork() {
     const LINK_DIST = 170;
 
     function resize() {
+      if (!canvas) return;
       width = canvas.clientWidth;
       height = canvas.clientHeight;
       canvas.width = width * dpr;
@@ -59,8 +61,9 @@ export function DataNetwork() {
 
     function spawnPulse(pairs: [number, number][]) {
       if (pulses.length > 5 || pairs.length === 0) return;
-      const [a, b] = pairs[Math.floor(Math.random() * pairs.length)];
-      pulses.push({ a, b, t: 0, speed: 0.004 + Math.random() * 0.004 });
+      const pair = pairs[Math.floor(Math.random() * pairs.length)];
+      if (!pair) return;
+      pulses.push({ a: pair[0], b: pair[1], t: 0, speed: 0.004 + Math.random() * 0.004 });
     }
 
     let last = 0;
@@ -102,8 +105,8 @@ export function DataNetwork() {
       const pairs: [number, number][] = [];
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
-          const a = nodes[i];
-          const b = nodes[j];
+          const a = nodes[i]!;
+          const b = nodes[j]!;
           const dx = a.x - b.x;
           const dy = a.y - b.y;
           const d = Math.hypot(dx, dy);
