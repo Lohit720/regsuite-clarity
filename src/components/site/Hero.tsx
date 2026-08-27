@@ -2,17 +2,12 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ShinyText } from "./ShinyText";
 import { Eyebrow, PillButton, easeOut } from "./primitives";
-import regops from "@/assets/regops-dashboard.png.asset.json";
-import regintel from "@/assets/regintel-tracker.png.asset.json";
-import regadapt from "@/assets/regadapt-table.png.asset.json";
-
-const montage = [regops.url, regintel.url, regadapt.url];
+import { DataNetwork } from "./DataNetwork";
 
 /**
- * Cinematic hero.
- * NOTE FOR DEV: the background layer is the placeholder for the RegProductSuite
- * demo video (<video autoPlay muted loop playsInline poster=... />). Until the
- * capture exists, a slow montage of the real product screens stands in.
+ * Cinematic, typography-first hero. The background is a subtle live
+ * data-network canvas — drifting nodes, thin links, faint grid and soft
+ * teal pulses — suggesting an intelligent data environment behind the words.
  */
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -20,36 +15,21 @@ export function Hero() {
 
   const textY = useTransform(scrollYProgress, [0, 1], [0, -140]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const visualScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
-  const visualY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.2]);
 
   return (
     <section ref={ref} id="top" className="relative h-screen min-h-[680px] w-full overflow-hidden">
-      {/* Ambient video layer (montage stand-in) */}
-      <div className="absolute inset-0">
-        {montage.map((src, i) => (
-          <motion.img
-            key={src}
-            src={src}
-            alt=""
-            aria-hidden
-            className="absolute inset-0 h-full w-full object-cover"
-            initial={{ opacity: 0, scale: 1.08 }}
-            animate={{ opacity: [0, 0.5, 0.5, 0], scale: [1.08, 1.16] }}
-            transition={{
-              duration: 18,
-              times: [0, 0.15, 0.85, 1],
-              repeat: Infinity,
-              repeatDelay: 12,
-              delay: i * 6,
-              ease: "linear",
-            }}
-          />
-        ))}
-        <div className="absolute inset-0 bg-black/78" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/60 to-black" />
+      {/* Ambient intelligent-data layer */}
+      <motion.div style={{ opacity: bgOpacity }} className="absolute inset-0">
+        <DataNetwork />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black" />
         <div className="glow-teal absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 opacity-25 blur-3xl" />
-      </div>
+        <motion.div
+          className="glow-teal absolute right-[8%] bottom-[12%] h-[300px] w-[420px] opacity-15 blur-3xl"
+          animate={{ opacity: [0.1, 0.2, 0.1] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </motion.div>
 
       <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-center px-5 pt-24 sm:px-8">
         <motion.div style={{ y: textY, opacity: textOpacity }} className="max-w-4xl">
@@ -96,22 +76,6 @@ export function Hero() {
               Talk to 720 Degrees
             </PillButton>
           </motion.div>
-        </motion.div>
-
-        {/* Product interface emerging from the dark */}
-        <motion.div
-          style={{ scale: visualScale, y: visualY }}
-          initial={{ opacity: 0, y: 90 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.4, delay: 0.7, ease: easeOut }}
-          className="pointer-events-none absolute right-[-12%] bottom-[-22%] hidden w-[58%] origin-bottom lg:block"
-        >
-          <div className="glow-teal absolute -inset-16 opacity-30 blur-3xl" />
-          <img
-            src={regops.url}
-            alt="RegProductSuite renewals dashboard inside the RegOps module"
-            className="relative w-full rounded-2xl border border-border shadow-[0_60px_160px_-40px_#000]"
-          />
         </motion.div>
       </div>
 
