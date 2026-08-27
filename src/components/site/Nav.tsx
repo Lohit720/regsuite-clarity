@@ -13,11 +13,13 @@ const links = [
 
 function Wordmark() {
   return (
-    <a href="#top" className="flex items-baseline gap-2">
-      <span className="text-xl font-bold tracking-tighter text-teal">720</span>
-      <span className="text-[11px] font-light tracking-[0.34em] text-white/80 uppercase">
-        Degrees
-      </span>
+    <a href="#top" className="flex items-center">
+      <img
+        src={logo720.url}
+        alt="720 Degrees"
+        className="h-9 w-auto sm:h-10"
+        decoding="async"
+      />
     </a>
   );
 }
