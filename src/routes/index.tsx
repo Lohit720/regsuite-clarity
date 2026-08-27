@@ -2,16 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
 import { ProductStatement } from "@/components/site/ProductStatement";
-import { ModuleShowcase } from "@/components/site/ModuleShowcase";
+import { ProductShowcase } from "@/components/site/ProductShowcase";
 import { AIAssistant } from "@/components/site/AIAssistant";
 import { ProductDemo } from "@/components/site/ProductDemo";
 import { FinalCTA } from "@/components/site/FinalCTA";
 import regintelTracker from "@/assets/regintel-tracker.png.asset.json";
-import regintelTables from "@/assets/regintel-tables.png.asset.json";
 import regopsDashboard from "@/assets/regops-dashboard.png.asset.json";
-import regopsWheel from "@/assets/regops-wheel.png.asset.json";
 import regadaptTable from "@/assets/regadapt-table.png.asset.json";
-import regadaptAdmin from "@/assets/regadapt-admin.png.asset.json";
 
 const title = "RegProductSuite by 720 Degrees — AI Regulatory Intelligence";
 const description =
