@@ -142,3 +142,80 @@
     color: var(--color-foreground);
   }
 }
+
+/* ---- RegProductSuite marketing prototype tokens ---- */
+:root {
+  --background: oklch(0 0 0);
+  --foreground: oklch(1 0 0);
+  --card: oklch(0.03 0 0);
+  --card-foreground: oklch(1 0 0);
+  --popover: oklch(0.03 0 0);
+  --popover-foreground: oklch(1 0 0);
+  --primary: oklch(0.62 0.105 189);
+  --primary-foreground: oklch(0.14 0.02 190);
+  --secondary: oklch(0.16 0 0);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.14 0 0);
+  --muted-foreground: oklch(1 0 0 / 45%);
+  --accent: oklch(0.72 0.11 220);
+  --accent-foreground: oklch(0.14 0.02 220);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.62 0.105 189);
+  --surface-1: oklch(0.02 0 0);
+  --surface-2: oklch(0.035 0 0);
+  --teal: #14a58c;
+  --teal-soft: #64cefb;
+  --radius: 1rem;
+}
+
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-teal: var(--teal);
+  --color-teal-soft: var(--teal-soft);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #000;
+  }
+  body {
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--teal) 55%, transparent);
+    color: #fff;
+  }
+}
+
+@utility product-frame {
+  border: 1px solid var(--color-border);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: var(--surface-2);
+  box-shadow:
+    0 40px 120px -30px color-mix(in oklab, var(--teal) 45%, transparent),
+    0 0 0 1px oklch(1 0 0 / 6%),
+    0 60px 180px -60px #000;
+}
+
+@utility glow-teal {
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--teal) 40%, transparent),
+    transparent
+  );
+}
+
+@keyframes shine-sweep {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
